@@ -20,7 +20,7 @@ You must provide API access keys/tokens for each service you intend to use. See 
 
 For the application to create BitPay invoices you must link the application to a BitPay merchant account. You can configure the application for both production (livenet transactions) and development (testnet transactions) simultaneously. Follow these steps:
 
- 1. Login to your [`production BitPay merchant account`](https://bitpay.com/dashboard/login/) or [`test BitPay merchant account`](https://bitpay.com/dashboard/login/)
+ 1. Login to your [`production BitPay merchant account`](https://bitpay.com/dashboard/login/) or [`test BitPay merchant account`](https://test.bitpay.com/dashboard/login/)
  2. Click "Payment Tools", then "Manage API Tokens", then "Add New Token"
  5. Enter a label (e.g. "Top-Up app")
  6. Uncheck the "Require Authentication" checkbox
@@ -67,7 +67,7 @@ Visit [`localhost:8000`](http://localhost:8000/) to view the app.
 
 ## Support
 
-* GitHub Issues
+* [GitHub Issues](https://github.com/bitpay/top-up-sample/issues)
   * Open an issue if you are having problems with this project
 
 ## License

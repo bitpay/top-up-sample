@@ -1,0 +1,100 @@
+/*
+ *
+ * Main CSS
+ *
+ */
+
+body {
+  padding-bottom: 60px;
+}
+
+p {
+  margin: 0 0 5px 0;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+.m10b {
+  margin-bottom: 10px;
+}
+
+.m10t {
+  margin-top: 10px;
+}
+
+.m15t {
+  margin-top: 15px;
+}
+
+.m20t {
+  margin-top: 20px;
+}
+
+.m40t {
+  margin-top: 40px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.form-group .help-block {
+  display: none;
+}
+ 
+.form-group.has-error .help-block {
+  display: block;
+}
+
+.unselectable {
+  cursor: default !important;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+
+.table > tbody > tr > td {
+  padding: 0;
+  border-top: none;
+}
+
+.table-col-1 {
+  width: 100px;
+}
+
+.navbar-inverse {
+  background-color: #F8F8F8;
+  border-color: #E7E7E7;
+}
+
+.pager {
+  margin: 10px 30px;
+}
+
+.currency-label {
+  min-width: 70px;
+}
+
+.header-logo {
+  background-image: url('/img/logo.png');
+  background-repeat: no-repeat;
+  background-size: 120px;
+  width: 120px;
+  margin: 0 10px 0 0 !important;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}

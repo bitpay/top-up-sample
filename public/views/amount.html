@@ -1,0 +1,66 @@
+<div class="container-fluid" ng-controller="amountController as ctrl">
+  <div ng-include="'views/includes/progress.html'" ng-init="step=step=index.steps.amount.num"></div>
+	<form name="amountForm" novalidate>
+	  <div class="row">
+	    <div class="col-xs-12 col-sm-4 m20t form-group" show-errors>
+        <label class="control-label">* Pay Amount</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa {{ctrl.currencyIcon(ctrl.selectedCurrency)}}"></i></span>
+			    	<!-- pattern match non-zero currency -->
+			      <input type="text" format="currency" class="form-control text-right" name="payAmount" ng-focus="ctrl.focused('amount')" ng-model="ctrl.amount" required select-on-click pattern="^(?=.*[1-9])[0-9,]*(?:\.\d{0,2})?"/>
+			      <div class="input-group-btn">
+			        <button type="button" class="btn btn-default dropdown-toggle currency-label" data-toggle="dropdown">{{ctrl.selectedCurrency}} <span class="caret"></span></button>
+							<ul class="dropdown-menu dropdown-menu-right currency-label">
+						    <li ng-repeat="currency in ctrl.currencyList" ng-click="ctrl.setCurrency(currency)"><a href>{{currency}}</a></li>
+						  </ul>
+		  	    </div>
+        	</div>
+        	<p class="help-block" ng-if="amountForm.payAmount.$error.required">Pay amount is required</p>
+        	<p class="help-block" ng-if="amountForm.payAmount.$error.pattern">Pay amount must be greater than zero</p>
+	    	</div>
+    	</div>
+	    <div class="col-xs-12 col-sm-4 form-group m20t">
+	      <label for="fee">Fee</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa {{ctrl.currencyIcon(ctrl.selectedCurrency)}}"></i></span>
+			      <input type="text" format="currency" class="form-control text-right unselectable" ng-model="ctrl.fee" disabled/>
+						<span class="input-group-addon currency-label unselectable" id="feeCurrency">{{ctrl.selectedCurrency}}</span>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="col-xs-12 col-sm-4 m20t form-group" show-errors>
+	      <label class="control-label">* Receive Amount</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa {{ctrl.currencyIcon(ctrl.receiveCurrency)}}"></i></span>
+			    	<!-- pattern match non-zero currency -->
+			      <input type="text" format="currency" class="form-control text-right" name="receiveAmount" ng-focus="ctrl.focused('receiveAmount')" ng-model="ctrl.receiveAmount" required select-on-click pattern="^(?=.*[1-9])[0-9,]*(?:\.\d{0,2})?"/>
+						<span class="input-group-addon currency-label unselectable" id="receiveCurrency">{{ctrl.receiveCurrency}}</span>
+			    </div>
+		    </div>
+        <p class="help-block" ng-if="amountForm.receiveAmount.$error.required">Receive amount is required</p>
+        <p class="help-block" ng-if="amountForm.receiveAmount.$error.pattern">Receive amount must be greater than zero</p>
+	    </div>
+	  </div>
+		<div class="m10t bold">1 {{ctrl.selectedCurrency}} = <span ng-model="ctrl.receiveCurrencyPrice" format="currency"></span> {{ctrl.receiveCurrency}}</div>
+	  <div class="row">
+	    <div class="col-xs-12 col-sm-12 m20t form-group">
+	      <label for="message">Message</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+						<textarea class="form-control" rows="3" ng-model="ctrl.message"></textarea>
+			    </div>
+		    </div>
+	    </div>
+	  </div>
+	</form>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+	  <ul class="pager">
+	    <li class="previous"><a href ng-click="ctrl.back()"><span>&larr;</span> Back</a></li>
+	    <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
+	  </ul>
+	</nav>
+</div>

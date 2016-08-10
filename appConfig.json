@@ -1,0 +1,60 @@
+{
+  "currencyList": [
+    "USD", "EUR", "CAD", "GBP"
+  ],
+  "sendCurrency": "USD",
+  "receiveCurrency": "GBP",
+  "topUpService": "stub",
+  "paymentMethod": "bitpay",
+  "paymentMethods": {
+    "bitpay": {
+      "production": true,
+      "provider": "BitPay, Inc.",
+      "displayName": "Bitcoin",
+      "website": "https://bitpay.com/",
+      "supportEmail": "support@bitpay.com",
+      "orderSettings": {
+        "feePercentage": 1.0
+      },
+      "api": {
+        "url": "https://bitpay.com",
+        "token": "GRRXDLh2bPkkNb9c6t2EJ9",
+        "transactionSpeed": "high",
+        "notificationEmail": "andy@bitpay.com",
+        "notificationURL": "http://localhost:8000"
+      }
+    },
+    "test.bitpay": {
+      "production": false,
+      "provider": "BitPay, Inc.",
+      "displayName": "Bitcoin (test)",
+      "website": "https://bitpay.com/",
+      "supportEmail": "support@bitpay.com",
+      "orderSettings": {
+        "feePercentage": 1.0
+      },
+      "api": {
+        "url": "https://test.bitpay.com",
+        "token": "J5bk3nD95Sum3iM2CudaNF",
+        "transactionSpeed": "high",
+        "notificationEmail": "andy@bitpay.com",
+        "notificationURL": "http://localhost:8000"
+      }
+    }
+  },
+  "topUpServices": {
+    "stub": {
+      "provider": "BitPay, Inc.",
+      "displayName": "Stub",
+      "website": "https://bitpay.com/",
+      "supportEmail": "support@bitpay.com",
+      "orderSettings": {
+        "itemDescription": "Stub top-up",
+        "itemCode": ""
+      },
+      "api": {
+        "apiKey": "this is a stub service, there is no api"
+      }
+    }
+  }
+}

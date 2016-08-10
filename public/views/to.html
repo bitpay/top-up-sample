@@ -1,0 +1,62 @@
+<div class="container-fluid" ng-controller="toController as ctrl">
+  <div ng-include="'views/includes/progress.html'" ng-init="step=index.steps.to.num"></div>
+	<h4>Who is receiving the money?</h4>
+	<form name="toForm" novalidate>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 m20t form-group" show-errors>
+        <label class="control-label">* First Name</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="firstName" ng-model="ctrl.firstName" required placeholder="First Name"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="toForm.firstName.$error.required">First name is required</p>
+        <p class="help-block" ng-if="toForm.firstName.$error.firstName">First name is invalid</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 m20t form-group" show-errors>
+        <label class="control-label">* Last Name</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="lastName" ng-model="ctrl.lastName" required placeholder="Last Name"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="toForm.lastName.$error.required">Last name is required</p>
+        <p class="help-block" ng-if="toForm.lastName.$error.lastName">Last name is invalid</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 m20t form-group" show-errors>
+        <label class="control-label">* Email Address</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <input type="email" class="form-control" name="email" ng-model="ctrl.email" required placeholder="Email Address"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="toForm.email.$error.required">Email address is required</p>
+        <p class="help-block" ng-if="toForm.email.$error.email">Email address is invalid</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 m20t form-group" show-errors>
+        <label class="control-label">* Phone Number</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            <input type="text" class="form-control" name="phone" ng-model="ctrl.phone" format="telephone" pattern="^[0-9\(\)\.\-\+\ ]*$" required placeholder="Phone Number"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="toForm.phone.$error.required">Phone number is required</p>
+        <p class="help-block" ng-if="toForm.phone.$error.pattern">Phone number is invalid</p>
+      </div>
+    </div>
+	</form>
+  <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <ul class="pager">
+      <li class="previous"><a href ng-click="ctrl.back()"><span>&larr;</span> Back</a></li>
+      <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
+    </ul>
+  </nav>
+</div>

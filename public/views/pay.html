@@ -1,0 +1,81 @@
+<div class="container-fluid" ng-controller="payController as ctrl">
+  <div ng-include="'views/includes/progress.html'" ng-init="step=step=index.steps.pay.num"></div>
+	<div data-ng-show="ctrl.errorMessage" class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-ng-click="ctrl.errorMessage = undefined">&times;</button>
+		<strong>Oops!</strong> {{ctrl.errorMessage}}
+	</div>
+	<div data-ng-show="ctrl.infoMessage" class="alert alert-info alert-dismissable">
+		<button type="button" class="close" data-ng-click="ctrl.infoMessage = undefined">&times;</button>
+		<strong>Info!</strong> {{ctrl.infoMessage}}
+	</div>
+	<form>
+	  <div class="row">
+	    <div class="col-xs-12 col-sm-6">
+	      <h5>From</h5>
+	      <table class="table">
+	        <tr>
+	          <td class="table-col-1">Name:</td>
+	          <td>{{ctrl.order.from.firstName}} {{ctrl.order.from.lastName}}</td>
+	        </tr>
+	        <tr>
+	          <td>Paid:</td>
+	          <td><span ng-bind-html="ctrl.currencySymbol(ctrl.order.amount.currency)|html"></span><span ng-model="ctrl.order.amount.price" format="currency"></span> {{ctrl.order.amount.currency}}</td>
+	        </tr>
+	        <tr>
+	        	<td></td>
+	          <td>(includes fee of <span ng-bind-html="ctrl.currencySymbol(ctrl.order.amount.currency)|html"></span><span ng-model="ctrl.order.fee.amount" format="currency"></span> {{ctrl.order.amount.currency}})</td>
+	        </tr>
+	        <tr>
+	          <td>Email:</td>
+	          <td>{{ctrl.order.from.email}}</td>
+	        </tr>
+	      </table>
+	    </div>
+	    <div class="col-xs-12 col-sm-6">
+	      <h5>To</h5>
+	      <table class="table">
+	        <tr>
+	          <td class="table-col-1">Name:</td>
+	          <td>{{ctrl.order.to.firstName}} {{ctrl.order.to.lastName}}</td>
+	        </tr>
+	        <tr>
+	          <td>Received:</td>
+	          <td><span ng-bind-html="ctrl.currencySymbol(ctrl.order.receive.currency)|html"></span><span ng-model="ctrl.order.receive.amount" format="currency"></span> {{ctrl.order.receive.currency}}</td>
+	        </tr>
+	        <tr>
+	          <td>Email:</td>
+	          <td>{{ctrl.order.to.email}}</td>
+	        </tr>
+	        <tr>
+	          <td>Phone:</td>
+	          <td>{{ctrl.order.to.phone|tel}}</td>
+	        </tr>
+	      </table>
+	    </div>
+	    <div class="col-xs-12 col-sm-12">
+	      <h5>Message</h5>
+	      <p>{{ctrl.order.message.text}}</p>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-12 col-sm-12 m10t">
+	      <h5>Pay with</h5>
+				<div class="radio">
+					<div ng-repeat="paymentMethod in ctrl.paymentMethods">
+					  <label><input type="radio" ng-model="ctrl.paymentMethod" value="{{paymentMethod.id}}" checked>{{paymentMethod.displayName}}</label><br/>
+					</div>
+				</div>
+	    </div>
+	  </div>
+	</form>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+	  <ul class="pager">
+	    <li class="previous" ng-class="{'disabled': ctrl.paymentInProgress}">
+	    	<a href ng-click="ctrl.back()"><span>&larr;</span> Back</a>
+	    </li>
+	    <li class="next" ng-class="{'disabled': ctrl.paymentInProgress}">
+	    	<a href ng-click="ctrl.pay()">Pay Now <span class="fa fa-spinner fa-spin" ng-show="ctrl.paymentInProgress"></span></a>
+	    </li>
+	  </ul>
+	</nav>
+</div>

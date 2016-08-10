@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Top Up Application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/topUpApp.css">
+</head>
+  <body ng-controller="indexController as index">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand header-logo" href="#"></a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="sectionContainer">
+      <div id="mainSection">
+        <section ui-view="main" class="col-xs-12 col-sm-12 centered"></section>
+      </div>
+    </div>
+
+    <script src="lib/angular.js"></script>
+    <script src="lib/components.js"></script>
+    <script src="lib/topUpService.js"></script>
+    <script src="js/topUpApp.js"></script>
+    <script src="https://bitpay.com/bitpay.js"></script>
+  </body>
+</html>

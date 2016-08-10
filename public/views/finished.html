@@ -1,0 +1,84 @@
+<div class="container-fluid" ng-controller="finishedController as ctrl">
+  <div ng-include="'views/includes/progress.html'" ng-init="step=step=index.steps.finished.num"></div>
+	<div data-ng-show="ctrl.successMessage" class="alert alert-success">
+		<strong>Yay!</strong> {{ctrl.successMessage}}
+	</div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h5>From</h5>
+      <table class="table">
+        <tr>
+          <td class="table-col-1">Name:</td>
+          <td>{{ctrl.order.from.firstName}} {{ctrl.order.from.lastName}}</td>
+        </tr>
+        <tr>
+          <td>Paid:</td>
+          <td>
+            <span ng-bind-html="ctrl.currencySymbol(ctrl.order.amount.currency)|html"></span><span ng-model="ctrl.order.amount.price" format="currency"></span> {{ctrl.order.amount.currency}}
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>(includes fee of <span ng-bind-html="ctrl.currencySymbol(ctrl.order.amount.currency)|html"></span><span ng-model="ctrl.order.fee.amount" format="currency"></span> {{ctrl.order.amount.currency}})</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{ctrl.order.from.email}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h5>To</h5>
+      <table class="table">
+        <tr>
+          <td class="table-col-1">Name:</td>
+          <td>{{ctrl.order.to.firstName}} {{ctrl.order.to.lastName}}</td>
+        </tr>
+        <tr>
+          <td>Received:</td>
+          <td>
+            <span ng-bind-html="ctrl.currencySymbol(ctrl.order.receive.currency)|html"></span><span ng-model="ctrl.order.receive.amount" format="currency"></span> {{ctrl.order.receive.currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{ctrl.order.to.email}}</td>
+        </tr>
+        <tr>
+          <td>Phone:</td>
+          <td>{{ctrl.order.to.phone|tel}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-12 col-sm-12">
+      <h5>Message</h5>
+      <p>{{ctrl.order.message.text}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <h5>Receipt</h5>
+      <table class="table">
+        <tr>
+          <td class="table-col-1">Payment ID:</td>
+          <td>
+            <a target="_blank" ng-if="ctrl.order.payment.status.transaction.url" ng-href="{{ctrl.order.payment.status.transaction.url}}">{{ctrl.order.payment.status.transaction.id}}</a>
+            <span ng-if="!ctrl.order.payment.status.transaction.url">{{ctrl.order.payment.status.transaction.id}}</span>
+            <div>(provided by {{ctrl.paymentProvider}})</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Top-up ID:</td>
+          <td>
+            <a target="_blank" ng-if="ctrl.order.topUp.status.transaction.url" ng-href="{{ctrl.order.topUp.status.transaction.url}}">{{ctrl.order.topUp.status.transaction.id}}</a>
+            <span ng-if="!ctrl.order.topUp.status.transaction.url">{{ctrl.order.topUp.status.transaction.id}}</span>
+            <div>(provided by {{ctrl.topUpProvider}})</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 text-center">
+    <button type="button" class="btn btn-primary" ng-click="ctrl.again()">Do it again!</button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="nav-progress">
+  <div class="circle" ng-class="{'active': step == 1, 'done': step > 1}">
+    <span class="label">1</span>
+    <span class="title">{{index.getStep(1).label}}</span>
+  </div>
+  <span class="bar" ng-class="{'done': step > 1}"></span>
+  <div class="circle" ng-class="{'active': step == 2, 'done': step > 2}">
+    <span class="label">2</span>
+    <span class="title">{{index.getStep(2).label}}</span>
+  </div>
+  <span class="bar" ng-class="{'done': step > 2}"></span>
+  <div class="circle" ng-class="{'active': step == 3, 'done': step > 3}">
+    <span class="label">3</span>
+    <span class="title">{{index.getStep(3).label}}</span>
+  </div>
+  <span class="bar" ng-class="{'done': step > 3}"></span>
+  <div class="circle" ng-class="{'active': step == 4, 'done': step > 4}">
+    <span class="label">4</span>
+    <span class="title">{{index.getStep(4).label}}</span>
+  </div>
+  <span class="bar" ng-class="{'done': step > 4}"></span>
+  <div class="circle" ng-class="{'active': step == 5, 'done': step > 5}">
+    <span class="label">5</span>
+    <span class="title">{{index.getStep(5).label}}</span>
+  </div>
+</div>

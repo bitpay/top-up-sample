@@ -1,0 +1,29 @@
+{
+  "name": "topup",
+  "description": "A top-up application that accepts bitcoin payments",
+  "author": "BitPay, Inc.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "dependencies": {
+    "bitpay-public-client": "^1.1.1",
+    "express": "^4.11.2",
+    "fs": "0.0.2",
+    "fs-extra": "^0.30.0",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^3.5.0",
+    "shelljs": "^0.6.0"
+  },
+  "devDependencies": {
+    "bower": "^1.7.7"
+  },
+  "scripts": {
+    "preinstall": "bower install",
+    "postinstall": "npm run build",
+    "build": "grunt",
+    "start": "node app.js"
+  }
+}

@@ -1,0 +1,48 @@
+<div class="container-fluid" ng-controller="fromController as ctrl">
+  <div ng-include="'views/includes/progress.html'" ng-init="step=index.steps.from.num"></div>
+  <h4>Who is sending the money?</h4>
+  <form name="fromForm" novalidate>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 m20t form-group" show-errors>
+        <label class="control-label">* First Name</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="firstName" ng-model="ctrl.firstName" required placeholder="First Name"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="fromForm.firstName.$error.required">First name is required</p>
+        <p class="help-block" ng-if="fromForm.firstName.$error.firstName">First name is invalid</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 m20t form-group" show-errors>
+        <label class="control-label">* Last Name</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="lastName" ng-model="ctrl.lastName" required placeholder="Last Name"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="fromForm.lastName.$error.required">Last name is required</p>
+        <p class="help-block" ng-if="fromForm.lastName.$error.lastName">Last name is invalid</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 m20t form-group" show-errors>
+        <label class="control-label">* Email Address</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <input type="email" class="form-control" name="email" ng-model="ctrl.email" required placeholder="Email Address"/>
+          </div>
+        </div>
+        <p class="help-block" ng-if="fromForm.email.$error.required">Email address is required</p>
+        <p class="help-block" ng-if="fromForm.email.$error.email">Email address is invalid</p>
+      </div>
+    </div>
+  </form>
+  <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <ul class="pager">
+      <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
+    </ul>
+  </nav>
+</div>

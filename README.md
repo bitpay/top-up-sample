@@ -1,5 +1,8 @@
 Top-Up is a sample application that applies a bitcoin payment to a targeted account service.
 
+<img src="./doc/mobile-amount.png?raw=true" width="45%"></img>
+<img src="./doc/browser-amount.png?raw=true" width="45%"></img>
+
 ## Main Features
 
 - Integration with BitPay bitcoin payment service using modal invoice

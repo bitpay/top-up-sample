@@ -3,7 +3,7 @@
 angular.module('topUpApp.controllers').controller('amountController', function($rootScope, $scope, $timeout, appConfig, go, orderService, Currency) {
 
   var self = this;
-	var amountInFocus = false;
+	var inFocus = '';
 
   self.currencyList = appConfig.currencyList;
 
@@ -12,10 +12,8 @@ angular.module('topUpApp.controllers').controller('amountController', function($
 	$scope.$watch(function() {
     return this.amount
   }.bind(this), function(value) {
-		orderService.order.setAmount({
-			price: Number(this.amount)
-		});
-  	if (amountInFocus) {
+  	if (inFocus == 'amount') {
+			orderService.order.setAmount({price: Number(this.amount)});
 			updateForm(this, 'amount');
 		}
   }.bind(this));
@@ -23,8 +21,8 @@ angular.module('topUpApp.controllers').controller('amountController', function($
 	$scope.$watch(function() {
     return this.receiveAmount
   }.bind(this), function(value) {
-		orderService.order.setReceiveAmount(Number(this.receiveAmount));
-  	if (!amountInFocus) {
+  	if (inFocus == 'receiveAmount') {
+			orderService.order.setReceiveAmount(Number(this.receiveAmount));
 			updateForm(this, 'receiveAmount');
 		}
   }.bind(this));
@@ -32,30 +30,31 @@ angular.module('topUpApp.controllers').controller('amountController', function($
 	$scope.$watch(function() {
     return this.selectedCurrency
   }.bind(this), function(value) {
-		orderService.order.setAmount({
-			currency: this.selectedCurrency
-		});
+		orderService.order.setAmount({currency: this.selectedCurrency});
 		updateForm(this, 'selectedCurrency');
   }.bind(this));
 
 	$scope.$watch(function() {
     return this.message
   }.bind(this), function(value) {
-		orderService.order.setMessage({
-			text: this.message
-		});
+		orderService.order.setMessage({text: this.message});
 		updateForm(this, 'message');
   }.bind(this));
 
 	function updateForm(obj, changed) {
-		(changed != 'selectedCurrency' ? obj.selectedCurrency = orderService.order.amount.currency : angular.noop);
-		(changed != 'amount'           ? obj.amount = orderService.order.amount.price + '' : angular.noop);
-		(changed != 'receiveAmount'    ? obj.receiveAmount = orderService.order.receive.amount + '' : angular.noop);
-		(changed != 'message'          ? obj.message = orderService.order.message.text : angular.noop);
+		if (changed) {
+			(changed != 'amount'        ? obj.amount = orderService.order.amount.price + '' : angular.noop);
+			(changed != 'receiveAmount' ? obj.receiveAmount = orderService.order.receive.amount + '' : angular.noop);
+		} else {
+			obj.amount = orderService.order.amount.price;
+			obj.receiveAmount = orderService.order.receive.amount;
+		}
 
+		obj.selectedCurrency = orderService.order.amount.currency;
 		obj.receiveCurrency = orderService.order.receive.currency;
 		obj.receiveCurrencyPrice = orderService.order.receive.currencyPrice;
 		obj.fee = orderService.order.fee.amount + '';
+		obj.message = orderService.order.message.text;
 
 		$timeout(function() {
 			$rootScope.$apply();
@@ -67,7 +66,7 @@ angular.module('topUpApp.controllers').controller('amountController', function($
 	};
 
 	self.focused = function(what) {
-		amountInFocus = (what == 'amount');
+		inFocus = what;
 	};
 
 	self.setCurrency = function(currency) {

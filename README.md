@@ -33,7 +33,7 @@ For the application to create BitPay invoices you must link the application to a
 
 ### Top-up services
 
-You can add additional top-up services by creating [providers](./src/js/services/providers) and calling your providers from [topUpService.js](.src/js/services/topUpService.js). This application includes a [stubTopUpService](./src/js/services/providers/stubTopUpService.js) that serves as a placeholder for your top-up service. Use this as a reference implementation for your top-up service.
+You can add additional top-up services by creating [providers](./src/js/services/providers) and calling your providers from [topUpService.js](./src/js/services/topUpService.js). This application includes a [stubTopUpService](./src/js/services/providers/stubTopUpService.js) that serves as a placeholder for your top-up service. Use this as a reference implementation for your top-up service.
 
 Obtain API keys and configure your top-up service as required. See [appConfig.json](./appConfig.json). The key `topUpService` selects your target service at runtime.
 

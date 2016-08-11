@@ -12,11 +12,30 @@ Top-Up is a sample application that applies a bitcoin payment to a targeted acco
 - Bootstrap presentation
 - Easily configured
 
+### Mobile View
+
+<p align="center">
+  <img src="./doc/mobile-amount.png?raw=true" height="400px"></img>&nbsp;
+  <img src="./doc/mobile-pay.png?raw=true" height="400px"></img>&nbsp;
+  <img src="./doc/mobile-finished.png?raw=true" height="400px"></img>
+</p>
+
+### Browser View
+
+<p align="center">
+  <img src="./doc/browser-invoice.png?raw=true" height="325px"></img>&nbsp;
+  <img src="./doc/browser-finished.png?raw=true" height="325px"></img>
+</p>
+
 ## Configuration
 
-You must provide API access keys/tokens for each service you intend to use. See `appConfig.json`.
+You must provide API access keys/tokens for each service you intend to use. See [appConfig.json](./appConfig.json).
 
-### BitPay API token
+### Payment methods
+
+This application integrates with the [BitPay merchant services platform](https://bitpay.com) for accepting bitcoin as a payment from your customers.  You can add additional payment methods by creating [providers](./src/js/services/providers) and calling your providers from [paymentService.js](./src/js/services/paymentService.js).
+
+#### BitPay (bitcoin)
 
 For the application to create BitPay invoices you must link the application to a BitPay merchant account. You can configure the application for both production (livenet transactions) and development (testnet transactions) simultaneously. Follow these steps:
 
@@ -25,13 +44,14 @@ For the application to create BitPay invoices you must link the application to a
  5. Enter a label (e.g. "Top-Up app")
  6. Uncheck the "Require Authentication" checkbox
  7. Click "Add Token" button
- 8. Copy and paste the Token into the api token entry in `appConfig.json`
+ 8. Copy and paste the Token into the api token entry in [appConfig.json](./appConfig.json)
 
-### Other services
+### Top-up services
 
-The application includes a `stubTopUpService` that serves as a placeholder for your service. Use this as a reference implementation for your top-up service.
+You can add additional top-up services by creating [providers](./src/js/services/providers) and calling your providers from [topUpService.js](./src/js/services/topUpService.js). This application includes a [stubTopUpService](./src/js/services/providers/stubTopUpService.js) that serves as a placeholder for your top-up service. Use this as a reference implementation for your top-up service.
 
-Obtain API keys and configure other services as required. See `appConfig.json`
+Obtain API keys and configure your top-up service as required. See [appConfig.json](./appConfig.json). The key `topUpService` selects your target service at runtime.
+
 ## Install For Development
 
 Ensure you have [Node](https://nodejs.org/) installed, then install and start Top-Up:
@@ -54,7 +74,7 @@ npm start
 
 ## Build For Production
 
-You can target payment methods for development or production. See `appConfig.json`.
+You can target payment methods for development or production. See [appConfig.json](./appConfig.json).
 Ensure you have [Node](https://nodejs.org/) installed, then install and start Top-Up:
 
 ```sh
@@ -64,6 +84,11 @@ npm start
 ```
 
 Visit [`localhost:8000`](http://localhost:8000/) to view the app.
+
+## Known Issues
+
+* [TODO] There is no IPN handler for BitPay to POST invoice notifications to the application.
+	* The application relies on window.postMessage() to receive payment status from the invoice.
 
 ## Support
 

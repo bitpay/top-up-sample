@@ -5,7 +5,10 @@
  */
 
 body {
-  padding-bottom: 60px;
+  position: relative;
+  bottom: 50px;
+  top: 50px;
+  padding-bottom: 50px;
 }
 
 p {
@@ -91,10 +94,18 @@ textarea {
 .header-logo {
   background-image: url('/img/logo.png');
   background-repeat: no-repeat;
-  background-size: 120px;
-  width: 120px;
+  background-size: 90px;
+  width: 90px;
   margin: 0 10px 0 0 !important;
   position: relative;
-  top: 5px;
+  top: 10px;
   left: 5px;
+}
+
+.footer-button {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
 }

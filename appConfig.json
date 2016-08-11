@@ -18,9 +18,9 @@
       },
       "api": {
         "url": "https://bitpay.com",
-        "token": "GRRXDLh2bPkkNb9c6t2EJ9",
+        "token": "PUT-YOUR-TOKEN-HERE",
         "transactionSpeed": "high",
-        "notificationEmail": "andy@bitpay.com",
+        "notificationEmail": "PUT-YOUR-EMAIL-ADDRESS-HERE",
         "notificationURL": "http://localhost:8000"
       }
     },
@@ -35,9 +35,9 @@
       },
       "api": {
         "url": "https://test.bitpay.com",
-        "token": "J5bk3nD95Sum3iM2CudaNF",
+        "token": "PUT-YOUR-TOKEN-HERE",
         "transactionSpeed": "high",
-        "notificationEmail": "andy@bitpay.com",
+        "notificationEmail": "PUT-YOUR-EMAIL-ADDRESS-HERE",
         "notificationURL": "http://localhost:8000"
       }
     }

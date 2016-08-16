@@ -50,13 +50,16 @@
         </div>
         <p class="help-block" ng-if="toForm.phone.$error.required">Phone number is required</p>
         <p class="help-block" ng-if="toForm.phone.$error.pattern">Phone number is invalid</p>
+        <p class="help-block" ng-if="toForm.phone.$error.verify">Could not verify for '{{ctrl.firstName}} {{ctrl.lastName}}'</p>
       </div>
     </div>
 	</form>
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <ul class="pager">
+    <ul class="pager pagination-lg" ng-class="{'disabled': ctrl.inProgress}">
       <li class="previous"><a href ng-click="ctrl.back()"><span>&larr;</span> Back</a></li>
-      <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
+      <li class="next">
+        <a href ng-click="ctrl.continue()">Continue <span ng-show="!ctrl.inProgress">&rarr;</span><i ng-show="ctrl.inProgress" class='fa fa-spinner fa-spin'></i></a>
+      </li>
     </ul>
   </nav>
 </div>

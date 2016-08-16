@@ -68,7 +68,7 @@
 
 .nav-progress .circle.done .label {
   color: #FFF;
-  background: #8bc435;
+  background: #002855;
   box-shadow: inset 0 0 2px rgba(0,0,0,.2);
 }
 
@@ -78,10 +78,10 @@
 
 .nav-progress .circle.active .label {
   color: #FFF;
-  background: #0c95be;
+  background: #F2A900;
   box-shadow: inset 0 0 2px rgba(0,0,0,.2);
 }
 
 .nav-progress .circle.active .title {
-  color: #0c95be;
+  color: #F2A900;
 }

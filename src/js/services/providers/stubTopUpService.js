@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('topUpApp.services').factory('stubTopUpService', function($log, appConfig) {
+angular.module('topUpApp.services').factory('stubTopUpService', function($log, appConfig, stubComplianceService, stubCustomerService) {
 
   var root = {};
 
@@ -29,11 +29,27 @@ angular.module('topUpApp.services').factory('stubTopUpService', function($log, a
 
 	// Public methods
 	// 
+	root.verify = function(what, a, b, callback) {
+		switch (what) {
+			case 'document':
+				stubComplianceService.idMatch(a, b, callback);
+				break;
+			case 'phone':
+				stubCustomerService.phoneMatch(a, b, callback);
+				break;
+			default:
+				break;
+		}
+	};
+
 	// This method wraps the api call to perform the top-up.
 	// The callback responds with an object compatible with order.payment.status.transaction, or an error.
 	// 
 	root.topUp = function(phoneNumber, amount, callback) {
-		if (!phoneNumber || !amount || !callback) return;
+		if (!phoneNumber || !amount || !callback) {
+			$log.debug('Stub top-up: invalid parameters');
+			return;
+		}
 
 		if (apiClient) {
 			apiClient.doIt(phoneNumber, amount, function(err, response) {

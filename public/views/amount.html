@@ -10,8 +10,8 @@
 			    	<!-- pattern match non-zero currency -->
 			      <input type="text" format="currency" class="form-control text-right" name="payAmount" ng-focus="ctrl.focused('amount')" ng-model="ctrl.amount" required select-on-click pattern="^(?=.*[1-9])[0-9,]*(?:\.\d{0,2})?"/>
 			      <div class="input-group-btn">
-			        <button type="button" class="btn btn-default dropdown-toggle currency-label" data-toggle="dropdown">{{ctrl.selectedCurrency}} <span class="caret"></span></button>
-							<ul class="dropdown-menu dropdown-menu-right currency-label">
+			        <button type="button" class="btn btn-default dropdown-toggle currency-button" data-toggle="dropdown">{{ctrl.selectedCurrency}} <span class="caret"></span></button>
+							<ul class="dropdown-menu dropdown-menu-right currency-button">
 						    <li ng-repeat="currency in ctrl.currencyList" ng-click="ctrl.setCurrency(currency)"><a href>{{currency}}</a></li>
 						  </ul>
 		  	    </div>
@@ -26,7 +26,7 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="fa {{ctrl.currencyIcon(ctrl.selectedCurrency)}}"></i></span>
 			      <input type="text" format="currency" class="form-control text-right unselectable" ng-model="ctrl.fee" disabled/>
-						<span class="input-group-addon currency-label unselectable" id="feeCurrency">{{ctrl.selectedCurrency}}</span>
+						<span class="input-group-addon currency-button unselectable" id="feeCurrency">{{ctrl.selectedCurrency}}</span>
 			    </div>
 		    </div>
 	    </div>
@@ -37,7 +37,7 @@
             <span class="input-group-addon"><i class="fa {{ctrl.currencyIcon(ctrl.receiveCurrency)}}"></i></span>
 			    	<!-- pattern match non-zero currency -->
 			      <input type="text" format="currency" class="form-control text-right" name="receiveAmount" ng-focus="ctrl.focused('receiveAmount')" ng-model="ctrl.receiveAmount" required select-on-click pattern="^(?=.*[1-9])[0-9,]*(?:\.\d{0,2})?"/>
-						<span class="input-group-addon currency-label unselectable" id="receiveCurrency">{{ctrl.receiveCurrency}}</span>
+						<span class="input-group-addon currency-button unselectable" id="receiveCurrency">{{ctrl.receiveCurrency}}</span>
 			    </div>
 		    </div>
         <p class="help-block" ng-if="amountForm.receiveAmount.$error.required">Receive amount is required</p>
@@ -58,7 +58,7 @@
 	  </div>
 	</form>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
-	  <ul class="pager">
+	  <ul class="pager pagination-lg">
 	    <li class="previous"><a href ng-click="ctrl.back()"><span>&larr;</span> Back</a></li>
 	    <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
 	  </ul>

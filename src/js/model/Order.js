@@ -21,7 +21,11 @@ angular.module('topUpApp.model').factory('Order', function ($log, lodash, rateSe
 	  from: {
 			firstName: '',
 			lastName: '',
-			email: ''
+      email: '',
+      id: {
+        typeCode: '',
+        number: ''
+      }
 	  },
 	  to: {
 			firstName: '',
@@ -173,7 +177,7 @@ angular.module('topUpApp.model').factory('Order', function ($log, lodash, rateSe
   };
 
   function computeReceiveAmount(obj) {
-  	obj.receive.amount = Math.round((obj.amount.price - obj.fee.amount) * obj.receive.currencyPrice);
+  	obj.receive.amount = Currency.roundTwoDecimals((obj.amount.price - obj.fee.amount) * obj.receive.currencyPrice);
   };
 
   function computeReceiveCurrencyPrice(obj) {

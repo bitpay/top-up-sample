@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('topUpApp.controllers').controller('toController', function($rootScope, $scope, go, orderService) {
+angular.module('topUpApp.controllers').controller('toController', function($rootScope, $scope, go, orderService, topUpService) {
 
   var self = this;
 
@@ -17,6 +17,7 @@ angular.module('topUpApp.controllers').controller('toController', function($root
 	$scope.$watch(function() {
     return this.lastName
   }.bind(this), function(value) {
+		setPhoneValid(true);
 		orderService.order.setTo({
 			lastName: this.lastName
 		});
@@ -25,6 +26,7 @@ angular.module('topUpApp.controllers').controller('toController', function($root
 	$scope.$watch(function() {
     return this.email
   }.bind(this), function(value) {
+		setPhoneValid(true);
 		orderService.order.setTo({
 			email: this.email
 		});
@@ -33,6 +35,7 @@ angular.module('topUpApp.controllers').controller('toController', function($root
 	$scope.$watch(function() {
     return this.phone
   }.bind(this), function(value) {
+		setPhoneValid(true);
 		orderService.order.setTo({
 			phone: this.phone
 		});
@@ -45,6 +48,30 @@ angular.module('topUpApp.controllers').controller('toController', function($root
 		self.phone = orderService.order.to.phone;
 	};
 
+	function setPhoneValid(b) {
+		$scope.toForm.phone.$setValidity('verify', b);
+	};
+
+	function verify(obj, callback) {
+		var name = {
+			first: orderService.order.to.firstName,
+			last: orderService.order.to.lastName
+		};
+
+		var phone = orderService.order.to.phone;
+
+		obj.inProgress = true;
+		topUpService.verify('phone', name, phone, function(err, verified) {
+			obj.inProgress = false;
+			if (err) {
+				obj.errorMessage = 'We had a problem verifying your information. Please try again.';
+				return callback(false);
+			}
+			setPhoneValid(verified);
+			return callback(verified);
+		});
+	};
+
 	self.back = function() {
 		go.previousStep('to');
 	};
@@ -53,8 +80,12 @@ angular.module('topUpApp.controllers').controller('toController', function($root
 		$scope.$broadcast('show-errors-check-validity');
 
 		if ($scope.toForm.$valid) {
-			go.nextStep('to');
-    }
+			verify(self, function(verified) {
+				if (verified) {
+					go.nextStep('to');
+		    }
+			});
+		}
 	};
 
 });

@@ -52,6 +52,39 @@
         "itemDescription": "Stub top-up",
         "itemCode": ""
       },
+      "compliance": {
+        "documentTypes": [{
+            "code": "DL",
+            "name": "Driving License"
+          }, {
+            "code": "MA",
+            "name": "Matricular"
+          }, {
+            "code": "PP",
+            "name": "Passport"
+          }, {
+            "code": "VISA",
+            "name": "Visa"
+          }, {
+            "code": "GC",
+            "name": "Green Card"
+          }, {
+            "code": "SID",
+            "name": "State ID"
+          }, {
+            "code": "MID",
+            "name": "Military ID"
+          }, {
+            "code": "VRC",
+            "name": "Voters Registration Card"
+          }, {
+            "code": "GID",
+            "name": "Government ID"
+          }, {
+            "code": "TIN",
+            "name": "Tax Identification Number"
+          }]
+      },
       "api": {
         "apiKey": "this is a stub service, there is no api"
       }

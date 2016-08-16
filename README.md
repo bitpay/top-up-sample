@@ -54,7 +54,7 @@ Obtain API keys and configure your top-up service as required. See [appConfig.js
 
 ## Install For Development
 
-Ensure you have [Node](https://nodejs.org/) installed, then install and start Top-Up:
+Ensure you have [Node](https://nodejs.org/), [bower](https://bower.io/) and [grunt](http://gruntjs.com/) installed, then install and start Top-Up:
 
 ```sh
 npm install
@@ -75,7 +75,7 @@ npm start
 ## Build For Production
 
 You can target payment methods for development or production. See [appConfig.json](./appConfig.json).
-Ensure you have [Node](https://nodejs.org/) installed, then install and start Top-Up:
+Ensure you have [Node](https://nodejs.org/), [bower](https://bower.io/) and [grunt](http://gruntjs.com/) installed, then install and start Top-Up:
 
 ```sh
 npm install

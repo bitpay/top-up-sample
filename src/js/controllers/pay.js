@@ -22,7 +22,7 @@ angular.module('topUpApp.controllers').controller('payController', function($roo
   }.bind(this));
 
 	$rootScope.$on('Local/UserCanceledPayment', function(event) {
-		self.paymentInProgress = false;
+		self.inProgress = false;
 		self.infoMessage = 'No payment made. You canceled before making a payment.';
 		$timeout(function() {
  		  $rootScope.$apply();
@@ -31,11 +31,18 @@ angular.module('topUpApp.controllers').controller('payController', function($roo
 
 	function initForm(obj) {
 		obj.paymentMethod = orderService.order.payment.method;
-		self.paymentInProgress = false;
+		self.inProgress = false;
 	};
 
-	function paymentInProgress(b) {
-		self.paymentInProgress = b;
+	function inProgress(message) {
+		var b = false;
+		if (typeof(message) === "boolean") {
+			b = message;
+		} else {
+			self.progressMessage = message;
+			b = true;
+		}
+		self.inProgress = b;
 		$timeout(function() {
  		  $rootScope.$apply();
  		});
@@ -46,13 +53,13 @@ angular.module('topUpApp.controllers').controller('payController', function($roo
 	};
 
 	self.back = function() {
-		if (self.paymentInProgress) return;
+		if (self.inProgress) return;
 		go.previousStep('pay');
 	};
 
 	self.pay = function() {
-		if (self.paymentInProgress) return;
-		paymentInProgress(true);
+		if (self.inProgress) return;
+		inProgress('Processing payment');
 		paymentService.pay(self.order, function(err, transaction) {
 			if (err) {
 				$log.debug('Payment error: ' + err);
@@ -60,11 +67,12 @@ angular.module('topUpApp.controllers').controller('payController', function($roo
 				$timeout(function() {
 		 		  $rootScope.$apply();
 		 		});
-				paymentInProgress(false);
+				inProgress(false);
 				return;
 			}
 
 			$log.debug('Payment complete: ' + transaction.id);
+			inProgress('Updating your account');
 
 			self.order.confirmPayment(transaction, function(order) {
 				topUpService.topUp(order, function(err, transaction) {

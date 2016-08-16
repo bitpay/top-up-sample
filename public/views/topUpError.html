@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-controller="topUpErrorController as ctrl">
-	<div data-ng-show="ctrl.errorMessage" class="alert alert-danger alert-dismissable">
+	<div data-ng-show="ctrl.errorMessage" class="alert alert-danger alert-dismissable m20t">
 		<button type="button" class="close" data-ng-click="ctrl.errorMessage = undefined">&times;</button>
 		<strong>Oops!</strong> {{ctrl.errorMessage}}
 	</div>
@@ -71,6 +71,6 @@
     </div>
   </div>
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <button type="button" class="btn btn-primary footer-button" ng-click="ctrl.again()">Try again!</button>
+    <button type="button" class="btn-lg btn-primary footer-button" ng-click="ctrl.again()">Try again!</button>
   </nav>
 </div>

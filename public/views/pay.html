@@ -8,6 +8,9 @@
 		<button type="button" class="close" data-ng-click="ctrl.infoMessage = undefined">&times;</button>
 		<strong>Info!</strong> {{ctrl.infoMessage}}
 	</div>
+	<div ng-class="{'loading': ctrl.inProgress}">
+		<div class="message">{{ctrl.progressMessage}}</div>
+	</div>
 	<form>
 	  <div class="row">
 	    <div class="col-xs-12 col-sm-6">
@@ -69,12 +72,12 @@
 	  </div>
 	</form>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
-	  <ul class="pager">
-	    <li class="previous" ng-class="{'disabled': ctrl.paymentInProgress}">
+	  <ul class="pager pagination-lg" ng-class="{'disabled': ctrl.inProgress}">
+	    <li class="previous">
 	    	<a href ng-click="ctrl.back()"><span>&larr;</span> Back</a>
 	    </li>
-	    <li class="next" ng-class="{'disabled': ctrl.paymentInProgress}">
-	    	<a href ng-click="ctrl.pay()">Pay Now <span class="fa fa-spinner fa-spin" ng-show="ctrl.paymentInProgress"></span></a>
+	    <li class="next">
+	    	<a href ng-click="ctrl.pay()">Pay Now</a>
 	    </li>
 	  </ul>
 	</nav>

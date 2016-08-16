@@ -1,5 +1,9 @@
 <div class="container-fluid" ng-controller="fromController as ctrl">
   <div ng-include="'views/includes/progress.html'" ng-init="step=index.steps.from.num"></div>
+  <div data-ng-show="ctrl.errorMessage" class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-ng-click="ctrl.errorMessage = undefined">&times;</button>
+    <strong>Oops!</strong> {{ctrl.errorMessage}}
+  </div>
   <h4>Who is sending the money?</h4>
   <form name="fromForm" novalidate>
     <div class="row">
@@ -39,10 +43,32 @@
         <p class="help-block" ng-if="fromForm.email.$error.email">Email address is invalid</p>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 m20t form-group" show-errors>
+        <label class="control-label">* Identification</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle document-button" data-toggle="dropdown">{{ctrl.selectedDocumentType.code}} <span class="caret"></span></button>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <li ng-repeat="documentType in ctrl.documentTypes" ng-click="ctrl.setDocumentType(documentType)"><a href>{{documentType.code}} - {{documentType.name}}</a></li>
+              </ul>
+            </div>
+            <input type="text" class="form-control" name="documentNumber" ng-model="ctrl.documentNumber" required/>
+          </div>
+          <p class="help-block" ng-if="fromForm.documentNumber.$error.required">Document number is required</p>
+          <p class="help-block" ng-if="fromForm.documentNumber.$error.pattern">Document number is invalid</p>
+          <p class="help-block" ng-if="fromForm.documentNumber.$error.verify">Could not verify for '{{ctrl.firstName}} {{ctrl.lastName}}'</p>
+        </div>
+      </div>
+    </div>
   </form>
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <ul class="pager">
-      <li class="next"><a href ng-click="ctrl.continue()">Continue <span>&rarr;</span></a></li>
+    <ul class="pager pagination-lg" ng-class="{'disabled': ctrl.inProgress}">
+      <li class="next">
+        <a href ng-click="ctrl.continue()">Continue <span ng-show="!ctrl.inProgress">&rarr;</span><i ng-show="ctrl.inProgress" class='fa fa-spinner fa-spin'></i></a>
+      </li>
     </ul>
   </nav>
 </div>

@@ -61,13 +61,14 @@
 	    </div>
 	  </div>
 	  <div class="row">
-	    <div class="col-xs-12 col-sm-12 m10t">
+	    <div class="form-group col-xs-10 col-sm-6 m10t">
 	      <h5>Pay with</h5>
-				<div class="radio">
-					<div ng-repeat="paymentMethod in ctrl.paymentMethods">
-					  <label><input type="radio" ng-model="ctrl.paymentMethod" value="{{paymentMethod.id}}" checked>{{paymentMethod.displayName}}</label><br/>
-					</div>
-				</div>
+				<div class="input-group funkyradio">
+	        <div class="funkyradio-default" ng-repeat="paymentMethod in ctrl.paymentMethods">
+            <input type="radio" name="radio" ng-model="ctrl.paymentMethod" id="radio-{{paymentMethod.id}}" value="{{paymentMethod.id}}"/>
+            <label class="form-control" for="radio-{{paymentMethod.id}}">{{paymentMethod.displayName}}</label>
+	        </div>
+	      </div>
 	    </div>
 	  </div>
 	</form>

@@ -35,12 +35,22 @@ angular.module('topUpApp.controllers').controller('fromController', function($ro
   }.bind(this));
 
 	$scope.$watch(function() {
+    return this.selectedDocumentType
+  }.bind(this), function(value) {
+		setDocumentNumberValid(true);
+		orderService.order.setFrom({
+			id: {
+				typeCode: this.selectedDocumentType.code
+			}
+		});
+  }.bind(this));
+
+	$scope.$watch(function() {
     return this.documentNumber
   }.bind(this), function(value) {
 		setDocumentNumberValid(true);
 		orderService.order.setFrom({
 			id: {
-				typeCode: this.selectedDocumentType.code,
 				number: this.documentNumber
 			}
 		});

@@ -200,8 +200,19 @@ textarea {
 }
 
 /*
- * Form validation error colors
+ * Custom radio button
  */
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #FFF;
+  background-color: #002855;
+}
+
+/*
+ * Custom form validation error colors
+ */
+
 .has-error .help-block,
 .has-error .input-group-addon,
 .has-error .control-label,

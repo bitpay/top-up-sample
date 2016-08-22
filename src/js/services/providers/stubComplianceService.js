@@ -4,7 +4,7 @@ angular.module('topUpApp.services').factory('stubComplianceService', function($l
 
   var root = {};
 	var database;
-	$http.get('/db/stubComplianceDatabase.json').success(function(data) {
+	$http.get('db/stubComplianceDatabase.json').success(function(data) {
   	database = data;
 	});
 

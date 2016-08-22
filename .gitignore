@@ -1,11 +1,28 @@
 # Public
-public/icons/*
-public/fonts/*
 public/css/*
-public/lib/*
+public/fonts/*
+public/icons/*
+public/img/*
 public/js/*
+public/lib/*
 
-# Grunt generated
+# Cordova
+cordova/project-*/*
+cordova/*.keystore
+
+# Templates
+appConfig.json
+cordova/Makefile
+cordova/ProjectMakefile
+cordova/config.xml
+cordova/wp/Package.appxmanifest
+cordova/android/res/
+cordova/wp/Assets/
+cordova/wp/*.png
+cordova/wp/*.jpg
+cordova/ios/splash/
+cordova/ios/icons/
+cordova/project/
 src/js/appConfig.js
 
 # Logs

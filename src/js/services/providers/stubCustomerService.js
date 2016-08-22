@@ -5,7 +5,7 @@ angular.module('topUpApp.services').factory('stubCustomerService', function($log
   var root = {};
 
 	var database;
-	$http.get('/db/stubCustomerDatabase.json').success(function(data) {
+	$http.get('db/stubCustomerDatabase.json').success(function(data) {
   	database = data;
 	});
 

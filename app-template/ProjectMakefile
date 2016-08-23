@@ -1,20 +1,13 @@
 .PHONY:plugins ios-platform android-platform wp-platform
 
 plugins:
-	cordova plugin add cordova-plugin-globalization
-	cordova plugin add cordova.plugins.diagnostic
 	cordova plugin add cordova-plugin-splashscreen
 	cordova plugin add cordova-plugin-statusbar
-	cordova plugin add cordova-ios-requires-fullscreen
-	cordova plugin add cordova-plugin-screen-orientation
-	cordova prepare
 
 ios-platform android-platform wp-platform: create-icon-splash
 	cordova platforms add $(subst -platform,,$@) || echo "Platform already added"
 
 ios: ios-platform plugins
-	cordova plugin add https://github.com/tjwoon/csZBar.git
-	cordova plugin add phonegap-plugin-push@1.5.3
 
 android: android-platform plugins
 
@@ -33,7 +26,7 @@ create-icon-splash:
 	mkdir -p resources
 	cp ../../app-template/*NAMENOSPACE*/resources/icon.psd resources
 	cp ../../app-template/*NAMENOSPACE*/resources/splash.psd resources
-	ionic resources $(MAKECMDGOALS) --ignore-cache --force
+	ionic resources $(MAKECMDGOALS)
 ### Replace the config file (ionic overwrites it).
 	cp -f ../config.xml ./config.xml
 ###
